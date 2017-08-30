@@ -13,12 +13,14 @@ class PerfSteps extends Simulation{
     http("Go to google")
       .get(googleURL)
       .check(status.is(200))
+      .check(currentLocation.is("http://www.google.co.uk/"))
   )
 
   val navToBBC = exec(
     http("Go to BBC")
       .get(bbcURL)
       .check(status.is(200))
+      .check(currentLocation.is("http://www.bbc.co.uk/news"))
   )
 
   val testScenario = scenario("Scenario1").exec(navToGoogle).exec(navToBBC)
