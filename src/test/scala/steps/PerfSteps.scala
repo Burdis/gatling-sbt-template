@@ -2,6 +2,7 @@ package steps
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
+import scala.concurrent.duration._
 
 class PerfSteps extends Simulation{
 
@@ -22,6 +23,11 @@ class PerfSteps extends Simulation{
 
   val testScenario = scenario("Scenario1").exec(navToGoogle).exec(navToBBC)
 
-  setUp(testScenario.inject(atOnceUsers(5))).protocols()
+  setUp(testScenario.inject(
+      rampUsersPerSec(1) to 10 during(10 seconds),
+      constantUsersPerSec(10) during(15 seconds) randomized,
+      rampUsersPerSec(10) to 1 during(10 seconds)
+    )
+  ).protocols()
 
 }
