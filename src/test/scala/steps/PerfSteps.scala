@@ -8,6 +8,8 @@ trait PerfSteps extends Simulation {
     val googleURL = "http://www.google.co.uk/"
     val bbcURL = "http://www.bbc.co.uk/news"
 
+    val feeder = csv("src/test/resources/testData/Data.csv").random
+
     val navToGoogle = exec(
         http("Go to google")
             .get(googleURL)

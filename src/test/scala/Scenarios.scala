@@ -3,7 +3,7 @@ import io.gatling.core.Predef._
 
 class Scenarios extends Simulation with PerfSteps with InjectionSteps {
 
-    val testScenario = scenario("Scenario1")
+    val testScenario = scenario("Scenario1").feed(feeder)
         .exec(navToGoogle)
         .exec(navToBBC)
 
