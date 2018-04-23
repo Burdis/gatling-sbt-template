@@ -5,22 +5,22 @@ import io.gatling.http.Predef._
 
 trait PerfSteps extends Simulation {
 
-    val googleURL = "http://www.google.co.uk/"
-    val bbcURL = "http://www.bbc.co.uk/news"
+  val googleURL = "http://www.google.co.uk/"
+  val bbcURL = "http://www.bbc.co.uk/news"
 
-    val feeder = csv("src/test/resources/testData/Data.csv").random
+  val feeder = csv("src/test/resources/testData/Data.csv").random
 
-    val navToGoogle = exec(
-        http("Go to google")
-            .get(googleURL)
-            .check(status.is(200))
-            .check(currentLocation.is("http://www.google.co.uk/"))
-    )
+  val navToGoogle = exec(
+    http("Go to google")
+      .get(googleURL)
+      .check(status.is(200))
+      .check(currentLocation.is("http://www.google.co.uk/"))
+  )
 
-    val navToBBC = exec(
-        http("Go to BBC")
-            .get(bbcURL)
-            .check(status.is(200))
-            .check(currentLocation.is("http://www.bbc.co.uk/news"))
-    )
+  val navToBBC = exec(
+    http("Go to BBC")
+      .get(bbcURL)
+      .check(status.is(200))
+      .check(currentLocation.is("http://www.bbc.co.uk/news"))
+  )
 }
